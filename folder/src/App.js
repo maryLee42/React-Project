@@ -14,6 +14,5 @@ function App() {
     <Notice></Notice>
     <Banner></Banner>
   );
-}
 
 export default App;
