@@ -1,0 +1,72 @@
+/* 배너관리 - pages/board/Banner.js  */
+/* 공통 */
+.pad {
+    padding: 30px;
+}
+
+.btn {
+    word-break: keep-all;
+    margin-left: 10px;
+}
+
+.inputDatepicker {
+    padding: 3px 0 3px 10px;
+    border: 1px solid #ced4da;
+}
+
+.formGroup {
+    width: 100%;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.formGroup:last-child {
+    border-bottom: 0;
+}
+
+.pagingWrap {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+/**/
+.mainTitle {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.datepickerWrap {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.tail {
+    margin: 0 10px;
+    color: #ced4da;
+}
+
+.inputWrap {
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.btnWrap {
+    width: 100%;
+    text-align: right;
+    padding: 0 30px 30px;
+}
+
+.tableWrap {
+    text-align: center;
+    padding: 0 30px 30px;
+}
+
+.tableWrap tbody tr {
+    cursor: pointer;
+}
