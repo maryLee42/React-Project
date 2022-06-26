@@ -19,4 +19,10 @@ zuri : mysql 설치
 - 사용하지 않는 package는 삭제하는 것이 좋음
 - package를 삭제할 때는 npm uninstall package name
 
-#####
+###### mary
+
+1. bootstrap 설치
+2. datepicker 설치
+3. 체크박스 일괄 선택 작업중
+
+
