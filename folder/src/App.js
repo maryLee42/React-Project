@@ -6,13 +6,13 @@ import './css/style.css';
 
 // 공지사항 import
 import Notice from './pages/board/notice.js';
+import Banner from './pages/board/Banner.js';
 
 
 function App() {
   return(
     <Notice></Notice>
-  )
- 
-}
+    <Banner></Banner>
+  );
 
 export default App;
