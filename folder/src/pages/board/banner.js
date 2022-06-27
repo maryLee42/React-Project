@@ -1,6 +1,6 @@
 // 메리 - banner
 import React, {useState} from 'react';
-import {Button, Form, Table, Pagination} from 'react-bootstrap'; //bootstrap
+import {Button, Form, Table, Pagination, Modal} from 'react-bootstrap'; //bootstrap
 import {RiSearch2Line} from 'react-icons/ri'; //react icon 가져오기('/'뒤에 아이콘이름 소문자로 두글자)
 import DatePicker from "react-datepicker"; //datepicker 가져오기
 import 'react-datepicker/dist/react-datepicker.css'; //datepicker css
@@ -15,6 +15,7 @@ function Banner() {
         const handleChange = (e) => { //각 Form.Check에 'onChange' prop이 있으므로 값이 변경될 때마다 'handleChange' 함수 실행, 클릭한 라디오버튼의 값으로 상태 업데이트
             setRadioState(e.target.value);
         };
+
         
         return(
             <div className='bannerWrap pad'>
@@ -109,51 +110,75 @@ function Banner() {
         );
     }
 
+
     //버튼 컴포넌트
     function ButtonArea(){
+        const [showPopup, setShowPopup] = useState(false);
+        const togglePopup = (e) => {
+            setShowPopup(e.target.value);
+        }
+
         return(
             <div className='btnWrap pad'>
-                <Button variant="primary" className='btn'>등록</Button>{' '}
-                <Button variant="primary" className='btn'>삭제</Button>{' '}
+                <Button variant="primary" className='btn'>등록</Button>
+                <Button 
+                    variant="primary" 
+                    className='btn'
+                    onClick={togglePopup}
+                    value='false'
+                >삭제</Button>
+                {showPopup ? (
+                    <div className='modalWrap'>
+                        <Modal.Dialog className='modalInner'>
+                            <Modal.Body>
+                                <p>선택된 글을 삭제하시겠습니까?</p>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={togglePopup}>취소</Button>
+                                <Button variant="primary">확인</Button>
+                            </Modal.Footer>
+                        </Modal.Dialog>
+                    </div>
+                ) : null}
             </div>
         );
     }
 
     //테이블 컴포넌트
     function TableArea(){
-        const [contents, checked, onClick] = useState();
+        // const {contents, checked, onClick} = useState();
 
-        useState = { //state값
-            allChecked: false,
-            checked0: false,
-            checked1: false,
-            checked2: false,
-            checked3: false,
-        }
+        // useState = { //state값
+        //     allChecked: false,
+        //     checked0: false,
+        //     checked1: false,
+        //     checked2: false,
+        //     checked3: false,
+        // }
 
-        //전체박스 선택/해제
-        const handleAllChecked = () => { //handleAllChecked 이벤트
-            const {allChecked} = this.state; //allchecked에 onClick 부여
-            this.setState({
-                allChecked : !allChecked,
-                checked0: !allChecked,
-                checked1: !allChecked,
-                checked2: !allChecked,
-                checked3: !allChecked
-            })
-        };
+        // //전체박스 선택/해제
+        // const handleAllChecked = () => { //handleAllChecked 이벤트
+        //     const {allChecked} = this.state; //allchecked에 onClick 부여
+        //     this.setState({
+        //         allChecked : !allChecked,
+        //         checked0: !allChecked,
+        //         checked1: !allChecked,
+        //         checked2: !allChecked,
+        //         checked3: !allChecked
+        //     })
+        // };
 
         //개별체크 (모든 체크 활성화 > 전체 선택)
-        const handleChecked = (index) => {
-            console.log(index);
-            this.setState({
-                [`Checked${index}`]: !this.state[`Checked${index}`]
-            }, () => {
-                this.setState({
-                    allChecked: this.state.Checked0 && this.state.Checked1 && this.state.Checked2 && this.state.Checked3 
-                })
-            })
-        };
+        // const handleChecked = (index) => {
+        //     console.log(index);
+        //     this.setState({
+        //         [`Checked${index}`]: !this.state[`Checked${index}`]
+        //     }, () => {
+        //         this.setState({
+        //             allChecked: this.state.Checked0 && this.state.Checked1 && this.state.Checked2 && this.state.Checked3 
+        //         })
+        //     })
+        // };
  
         //개별 체크박스 컴포넌트
         function CheckBox(){
@@ -164,9 +189,6 @@ function Banner() {
                             <Form.Check
                                 type={type}
                                 id={`default-${type}`}
-                                name={checked}
-                                checked={checked}
-                                onClick={onClick}
                             />
                         </div>
                     ))}
@@ -185,8 +207,6 @@ function Banner() {
                                         <Form.Check
                                             type={type}
                                             id={`default-${type}`}
-                                            checked={this.state.allChecked}
-                                            onClick={handleAllChecked}
                                         />
                                     </div>
                                 ))}
@@ -296,6 +316,9 @@ function Banner() {
             </Pagination>
         );
     }
+
+
+    
 
     return(
         <div>
