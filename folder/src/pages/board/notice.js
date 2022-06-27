@@ -58,7 +58,13 @@ function Notice() {
                             onApply={handleApply}
                             onCancel={handleCancel}
                         >
-                        <input type="text" className="form-control col-4" defaultValue="" id="datePicker" placeholder="기간을 선택해주세요"/>
+                        <input 
+                            type="text" 
+                            className="form-control col-4" 
+                            defaultValue="" 
+                            id="datePicker" 
+                            placeholder="기간을 선택해주세요"
+                        />
                         </DateRangePicker>
                     </div>               
                     <div className='searchWrap'>
@@ -84,7 +90,7 @@ function Notice() {
                 <p>검색결과<span>총<span className="searchNum">27</span>건</span></p>
                 <div className='listModify'>
                     <Button id="register">등록</Button>
-                    <Button id="del" onClick={handleShow} >삭제</Button>
+                    <Button id="del" onClick={handleShow}>삭제</Button>
                 </div>
             </div>  
             <Card id="card" className='listWrap'>
@@ -102,7 +108,7 @@ function Notice() {
                         <tbody>
                             <tr>
                                 <td>
-                                    <input type="checkbox" />
+                                    <input type="checkbox"/>
                                 </td>
                                 <td>1</td>
                                 <td>제목은 링크입니다.</td>
@@ -142,6 +148,7 @@ function Notice() {
                         <Pagination.First />{items}<Pagination.Last />
                     </Pagination>                                      
                 </Card.Body> 
+                <NonList></NonList>
             </Card>
             <Modal show={show} onHide={handleClose} className="delPopup">
                 <Modal.Header className=""closeButton></Modal.Header>
@@ -151,11 +158,16 @@ function Notice() {
                     <Button onClick={handleClose}>확인</Button>
                 </Modal.Footer>
             </Modal>
-            </div>
-        
+        </div>       
     )
 }
 
-
+function NonList(){
+    return(
+        <div className="nonSearchWrap">
+            <p>검색 결과가 없습니다.</p>
+        </div>
+    )
+}
 
 export default Notice;

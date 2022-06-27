@@ -158,6 +158,7 @@ input#searchInput {
 
 .listWrap {
   margin-top: 16px;
+  position: relative;
 }
 
 .delPopup .modal-header {
@@ -167,6 +168,7 @@ input#searchInput {
 .delPopup .modal-footer {
   border-top: none;
 }
+
 .delPopup .modal-content {
   border: none;
 }
@@ -178,6 +180,9 @@ input#searchInput {
 #pagenation .page-link {
   border: none;
   color: #9e9e9e;
+  font-size: 14px;
+  font-family: "SpoqaHanSansNeo-Regular";
+  padding: 4px 8px;
 }
 
 #pagenation .page-link:hover,
@@ -211,4 +216,13 @@ table tbody tr:last-child {
 table thead tr th:not(:first-child),
 table tbody tr td:not(:first-child) {
   text-align: center;
+}
+
+.nonSearchWrap {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
 }
