@@ -1,10 +1,11 @@
 // 메리 - banner
 import React, {useState} from 'react';
-import {Button, Form, Table, Pagination, Modal} from 'react-bootstrap'; //bootstrap
+import {Button, Form, Table, Pagination} from 'react-bootstrap'; //bootstrap
 import {RiSearch2Line} from 'react-icons/ri'; //react icon 가져오기('/'뒤에 아이콘이름 소문자로 두글자)
 import DatePicker from "react-datepicker"; //datepicker 가져오기
 import 'react-datepicker/dist/react-datepicker.css'; //datepicker css
-import {ko} from 'date-fns/esm/locale'
+import {ko} from 'date-fns/esm/locale';
+import Popup from '../../component/Popup'; //팝업 컴포넌트 불러오기
 
 
 function Banner() {
@@ -19,10 +20,13 @@ function Banner() {
         const [startDate, setStartDate] = useState(); //초기 날짜 값 > 현재 날짜 값
         const [endDate, setEndDate] = useState();
 
-        //버튼
-        const [showPopup, setShowPopup] = useState(false);
-        const togglePopup = (e) => {
-            setShowPopup(e.target.value);
+        //버튼 > 팝업
+        const [popup, setPopup] = useState({open: false, title: ''});
+        let onSubmit = () => {
+            setPopup({
+                open: true,
+                title: '선택된 글을 삭제하시겠습니까?',
+            });
         }
 
 
@@ -126,22 +130,13 @@ function Banner() {
                     <Button 
                         variant="primary" 
                         className='btn'
-                        onClick={togglePopup}
+                        onClick={onSubmit}
                         value='false'
                     >삭제</Button>
-                    {showPopup ? (
-                        <div className='modalWrap'>
-                            <Modal.Dialog className='modalInner'>
-                                <Modal.Body>
-                                    <p>선택된 글을 삭제하시겠습니까?</p>
-                                </Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="secondary" onClick={togglePopup}>취소</Button>
-                                    <Button variant="primary">확인</Button>
-                                </Modal.Footer>
-                            </Modal.Dialog>
-                        </div>
-                    ) : null}
+                    {onSubmit ? (
+                        <Popup open={popup.open} setPopup={setPopup} title={popup.title}/>
+                    ) : null
+                    }
                 </div>
                 <div className='tableWrap pad'>
                     <Table bordered hover>
